@@ -17,7 +17,114 @@ public class StoneMasonKarel extends SuperKarel {
 
 	public void run() {
 		
-		
+		for(int i=0; i<12; i++) {
+			
+			if(frontIsClear()) {
+				move();
+				while(frontIsBlocked()) {
+					checkLeft();
+				}
+			} else {
+				checkOtherRow();
+			}
+		}
 	}
-
+		
+			
+			
+		public void checkOtherRow() {
+			checkLeft();
+//			checkRight();
+		}
+		 
+		
+		
+		public void checkLeft() {
+			if(frontIsBlocked()) {
+				turnLeft();
+				while(frontIsClear())
+				move();
+				turnLeft();
+			}
+		}
 }
+		
+			
+			
+			
+			
+			
+		
+//		while(frontIsClear()) {
+//			move();
+////			checkFirstRow();
+////			checkNextRow();
+//			otherRow();
+//		
+//		}
+//	}
+		
+		
+		
+			
+	
+	
+//	public void checkFirstRow() {
+//		while(frontIsClear()) {
+//			move();
+//			
+//			if(beepersPresent()) {
+//				pickBeeper();
+//			}
+//		}
+//
+//	}
+//	
+//	public void checkNextRow() {
+//		while(frontIsBlocked()) {
+//			turnLeft();
+//			move();
+//			turnLeft();
+//			if(beepersPresent()) {
+//				pickBeeper();
+//				pickBeeper();
+//				move();
+//			}	
+//			
+//			
+//		}
+//		
+//		if(frontIsBlocked()) {
+//			turnRight();
+//			move();
+//			turnRight();
+//			
+//			if(beepersPresent()) {
+//				pickBeeper();
+//				move();
+//			}
+//		}
+//		
+//		
+//		
+//	}
+	
+	
+//	public void otherRow() {
+//		
+//		
+//		for(int i=1; i<11; i--) {
+//			
+//			if(frontIsClear()) {
+//				turnLeft();
+//				move();
+//				turnLeft();
+//				move();
+//			}
+
+
+
+
+
+	
+	

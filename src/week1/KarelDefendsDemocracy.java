@@ -6,31 +6,36 @@ public class KarelDefendsDemocracy extends SuperKarel {
 	public void run() {
 		
 		while (frontIsClear()) {
-		    move();
-		    checkMiddleBeeper();
-		    pickExtraBeepers();
-		    move();
-		    }
+				move();
+				checkMiddleBeeper();
+				pickExtraBeepers();
+				cleanBeepersBottomSide();
+				cleanBeepersUpperSide();
+				move();
 		}
+	}
+				
+				
+		
 		
 	
 	private void checkMiddleBeeper() {
-		  
+	  
 		if (beepersPresent()) {
-		    move();
-		    move();
-		  }
-		}
+	    move();
+	    move();
+	  }
+	}
 		
-	
+
 	private void pickExtraBeepers() {
 		  if (noBeepersPresent()) {
-		    cleanBeepersBottomSide();
+    cleanBeepersBottomSide();
 		    cleanBeepersUpperSide();
 
 
-		  }
-		}
+	  }
+	}
 		
 		
 	

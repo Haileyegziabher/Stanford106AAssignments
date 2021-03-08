@@ -1,0 +1,203 @@
+Problem 1
+
+
+
+public class Problem1 extends SuperKarel{
+	public void run() {
+		moveAcrossRow();
+		for(int i = 0; i < 4; i++) {
+			placeBeepers();
+			continueMoving();
+		}
+	}
+	private void moveAcrossRow() {
+		turnLeft();
+		move();
+		turnRight();
+	}
+	private void placeBeepers() {
+		move();
+		while(frontIsClear()) {
+			if(noBeepersPresent()) {
+				putBeeper();
+			}
+			move();
+		}
+	}
+	private void continueMoving() {
+		turnRight();
+		move();
+		turnRight();
+		move();
+		turnRight();
+	}
+}
+
+
+
+
+=============================================================================================
+
+Problem 2
+
+
+
+
+/* Problem 2a.
+ * Compute the value of each of the following Java expressions.
+ * If an error occurs during any of the evaluations,
+ * write "Error" on that line and explain briefly why the error occurs.
+ * [5.0 / 4 - 4 / 5] 				1.25
+ * [7 < 9 -5 && 3 % 0 == 3]			false
+ * ["B" + 8 + 4]					"B84"
+ * 
+ * Problem 2b.
+ * The 1st number is: 78
+ * The 2nd number is: 73
+ */
+
+public class Problem2 extends ConsoleProgram{
+	public void run() {
+		int num1 = 2;
+		int num2 = 13;
+		println("The 1st number is: " + Mystery(num1, 6));
+		println("The 2nd number is: " + Mystery(num2 % 5, 1 + num1 * 2));
+	}
+	
+	private int Mystery(int num1, int num2) {
+		num1 = Unknown(num1, num2);
+		num2 = Unknown(num2, num1);
+		return(num2);
+	}
+	
+	private int Unknown(int num1, int num2) {
+		int num3 = num1 + num2;
+		num2 += num3 * 2;
+		return(num2);
+	}
+}
+
+
+
+======================================================================================
+
+
+
+Problem 3
+
+
+
+public class Problem3 extends ConsoleProgram {
+	private static final int SENTINEL = 0;
+	public void run() {
+		
+		println("This program finds the two largest integers in a list."
+				+ " Enter values, one per line, using a " + SENTINEL 
+				+ " to signal the end of the list.");
+		int largest = -1;
+		int second = -1;
+		
+		while(true) {
+			int number = readInt(" ? ");
+			if(number == SENTINEL) break;
+			
+			if(number > largest) {
+				second = largest;
+				largest = number;
+			}else if(number > second) {
+				second = number;
+			}
+		}
+		println("The largest value is " + largest);
+		println("The second largest is " + second);
+	}
+}
+
+
+
+=============================================================================================
+
+
+Problem 4
+
+
+
+public class Problem4 extends GraphicsProgram {
+	private GImage frog;
+	private double fx, fy;
+	
+	private static final int SQUARE_SIZE = 75;
+	private static final int NROWS = 4;
+	private static final int NCOLS = 7;
+	
+	public static final int WINDOW_WIDTH = NCOLS * SQUARE_SIZE;
+	public static final int WINDOW_HEIGHT = NROWS * SQUARE_SIZE;
+	
+	public void run() {
+		frog = new GImage("frog.gif");
+		fx = (NCOLS / 2 + 0.5) * SQUARE_SIZE;
+		fy = (NROWS - 0.5) * SQUARE_SIZE;
+		add(frog, fx - frog.getWidth() / 2, fy - frog.getHeight() / 2);
+		addMouseListeners();
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		double mouseX = e.getX();
+		double mouseY = e.getY();
+		if(Math.abs(mouseX - fx) > Math.abs(mouseY - fy)) {
+			if(mouseX > fx) {
+				moveFrog(SQUARE_SIZE, 0);
+			}else {
+				moveFrog(-SQUARE_SIZE, 0);
+			}
+		}else {
+			if(mouseY > fy) {
+				moveFrog(0, SQUARE_SIZE);
+			}else {
+				moveFrog(0, -SQUARE_SIZE);
+			}
+		}
+	}
+	
+	public void moveFrog(double dx, double dy) {
+		if(insideWorld(fx + dx, fy + dy)) {
+			fx += dx;
+			fy += dy;
+			frog.move(dx, dy);
+		}
+	}
+	public boolean insideWorld(double x, double y) {
+		return (x >= 0 && x <= NCOLS * SQUARE_SIZE && y >= 0 && y <= NROWS * SQUARE_SIZE);
+	}
+}
+
+
+
+
+====================================================================================================
+
+
+Problem 5
+
+
+
+public class Problem5 extends ConsoleProgram{
+	public void run() {
+		while(true) {
+			String word = readLine("Enter string you want doubled letters removed from:
+");
+			if(word.isEmpty())break;
+			println(removeDoubledLetters(word));
+		}
+	}
+	public String removeDoubledLetters(String word) {
+		String removedDoubled = "";
+		for(int i = 0; i < word.length(); i++) {
+			char ch = word.charAt(i);
+			if(i == 0 || ch != word.charAt(i-1)) {
+				removedDoubled += ch;
+			}
+		}
+		return removedDoubled;
+	}
+}

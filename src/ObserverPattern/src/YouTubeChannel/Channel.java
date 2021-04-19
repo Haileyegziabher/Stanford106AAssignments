@@ -31,6 +31,7 @@ public class Channel implements Subject{
 		
 	}
 	
+
 	@Override
 	public void notifyObservers() {
 		for(Observer ob : observers) {
